@@ -8,5 +8,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="lib" path="/Users/khjtony/workspace/java/amqp-client-4.0.2.jar" sourcepath="/Users/khjtony/workspace/java/amqp-client-4.0.2-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
