@@ -1,4 +1,4 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 import java.net.*;
 import java.util.Scanner;
 import java.io.*;

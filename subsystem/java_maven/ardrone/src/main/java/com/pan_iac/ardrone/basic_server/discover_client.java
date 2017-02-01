@@ -1,4 +1,4 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 
 import java.lang.*;
 
@@ -14,7 +14,7 @@ public class discover_client implements Runnable {
 	DatagramSocket c;
 	
 	public static void main(String[] args){
-		Thread t = new Thread(new discover_client());
+		final Thread t = new Thread(new discover_client());
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 	         @Override
 	         public void run() {

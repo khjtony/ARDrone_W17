@@ -1,4 +1,4 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 
 import java.io.*;
 import javax.xml.ws.*;

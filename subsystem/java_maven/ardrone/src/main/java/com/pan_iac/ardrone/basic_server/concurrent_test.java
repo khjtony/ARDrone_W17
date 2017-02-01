@@ -1,4 +1,4 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 
 public class concurrent_test {
 	// this class will simulate a MQ, and several threads work

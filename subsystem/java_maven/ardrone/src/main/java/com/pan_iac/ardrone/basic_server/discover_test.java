@@ -1,6 +1,6 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 import java.lang.*;
-import basic_server.*;
+import com.pan_iac.ardrone.basic_server.*;
 
 public class discover_test {
 	

@@ -1,4 +1,4 @@
-package basic_server;
+package com.pan_iac.ardrone.basic_server;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,7 +10,7 @@ public class discover_server implements Runnable{
 	DatagramSocket socket;
 	
 	public static void main(String[] args){
-		Thread t = new Thread(new discover_server());
+		final Thread t = new Thread(new discover_server());
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 	         @Override
 	         public void run() {
