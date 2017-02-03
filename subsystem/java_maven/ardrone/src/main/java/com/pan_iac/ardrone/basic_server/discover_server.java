@@ -8,6 +8,7 @@ import java.net.InetAddress;
 
 public class discover_server implements Runnable{
 	DatagramSocket socket;
+	private volatile boolean running_flag=true;
 	
 	public static void main(String[] args){
 		final Thread t = new Thread(new discover_server());
@@ -24,18 +25,18 @@ public class discover_server implements Runnable{
 	         }
 	      });
 		t.start();
+		
 	}
 	
 	
-	
-	  @Override
+	@Override
 	  public void run() {
 	    try {
 	      //Keep a socket open to listen to all the UDP trafic that is destined for this port
 	      socket = new DatagramSocket(8888, InetAddress.getByName("0.0.0.0"));
 	      socket.setBroadcast(true);
 
-	      while (true) {
+	      while (running_flag) {
 	        System.out.println(getClass().getName() + ">>>Ready to receive broadcast packets!");
 	        
 	        //Receive a packet
@@ -50,6 +51,7 @@ public class discover_server implements Runnable{
 	        //See if the packet holds the right command (message)
 	        String message = new String(packet.getData()).trim();
 	        if (message.equals("DISCOVER_FUIFSERVER_REQUEST")) {
+	        	running_flag=false;
 	          byte[] sendData = "DISCOVER_FUIFSERVER_RESPONSE".getBytes();
 
 	          //Send a response

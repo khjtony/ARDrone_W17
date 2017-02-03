@@ -10,7 +10,7 @@ import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.util.Enumeration;
 
-public class discover_client implements Runnable {
+public class discover_client extends Thread {
 	DatagramSocket c;
 	
 	public static void main(String[] args){
@@ -28,6 +28,7 @@ public class discover_client implements Runnable {
 	         }
 	      });
 		t.start();
+		
 	}
 	
 	@Override
