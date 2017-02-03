@@ -1,48 +1,63 @@
 package com.pan_iac.ardrone.basic_server;
 
 import java.io.IOException;
+import java.util.Date;
 import java.io.InputStream;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.SocketTimeoutException;
+import java.sql.Timestamp;
+import java.util.Map;
+import java.util.*;
 
 public class discover_server implements Runnable{
 	DatagramSocket socket;
 	private volatile boolean running_flag=true;
+	private Map<String, String> status = new HashMap();
+	private long request_count=0;
+	PaniacIPC ipc;
+	private String myname="";
 	
-	public static void main(String[] args){
-		final Thread t = new Thread(new discover_server());
-		Runtime.getRuntime().addShutdownHook(new Thread() {
-	         @Override
-	         public void run() {
-	        	 t.interrupt();
-	        	 try{
-	        		 t.join();
-	        	 }catch(InterruptedException e){
-	        		 System.out.println(this.getClass() + " has been interrupted.");
-	        	 }
-	            System.out.println("W: interrupt received, killing" + this.getClass());
-	         }
-	      });
-		t.start();
-		
+	discover_server(PaniacIPC ipc,String name){
+		this.ipc=ipc;
+		this.myname=name;
+		updateStatus();
 	}
 	
+	private void updateStatus(){
+		status.put("NAME", myname);
+		status.put("TYPE", this.getClass().toString());
+		status.put("TIMESTAMP", String.valueOf(System.currentTimeMillis()));
+		status.put("REQUEST_COUNT", String.valueOf(request_count));
+		ipc.push(status);
+	}
+	
+	public Map<String, String> getStatus(){
+		return status;
+	}
 	
 	@Override
 	  public void run() {
+		System.out.println("DEBUGGING");
 	    try {
 	      //Keep a socket open to listen to all the UDP trafic that is destined for this port
 	      socket = new DatagramSocket(8888, InetAddress.getByName("0.0.0.0"));
 	      socket.setBroadcast(true);
+	      socket.setSoTimeout(500);
 
-	      while (running_flag) {
+	      while (running_flag && !Thread.currentThread().interrupted()) {
+	    	updateStatus();
 	        System.out.println(getClass().getName() + ">>>Ready to receive broadcast packets!");
 	        
 	        //Receive a packet
 	        byte[] recvBuf = new byte[15000];
 	        DatagramPacket packet = new DatagramPacket(recvBuf, recvBuf.length);
-	        socket.receive(packet);
+	        try{
+	        	socket.receive(packet);
+	        }catch(IOException ex){
+	        	continue;
+	        }
 
 	        //Packet received
 	        System.out.println(getClass().getName() + ">>>Discovery packet received from: " + packet.getAddress().getHostAddress());
@@ -51,18 +66,25 @@ public class discover_server implements Runnable{
 	        //See if the packet holds the right command (message)
 	        String message = new String(packet.getData()).trim();
 	        if (message.equals("DISCOVER_FUIFSERVER_REQUEST")) {
-	        	running_flag=false;
+	        	request_count++;
 	          byte[] sendData = "DISCOVER_FUIFSERVER_RESPONSE".getBytes();
 
 	          //Send a response
 	          DatagramPacket sendPacket = new DatagramPacket(sendData, sendData.length, packet.getAddress(), packet.getPort());
 	          socket.send(sendPacket);
 
-	          System.out.println(getClass().getName() + ">>>Sent packet to: " + sendPacket.getAddress().getHostAddress());
+	          System.out.println(getClass().getName() + ">>> "+ request_count+ " Sent packet to: " + sendPacket.getAddress().getHostAddress());
 	        }
 	      }
-	    } catch (IOException ex) {
-	      System.out.println("Something wrong in server happened");
+	    }catch(Exception ex){
+	    	System.out.println("Unkown error");
 	    }
+    	socket.close();
+    	return;
 	  }
+	
+	public void terminate(){
+		running_flag = false;
+	}
 }
+ 
