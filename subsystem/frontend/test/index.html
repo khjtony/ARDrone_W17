@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <script>
+    function refresh(node)
+    {
+        var times = 3000; // gap in Milli Seconds;
+
+        (function startRefresh()
+        {
+            var address;
+            if(node.src.indexOf('?')>-1)
+            address = node.src.split('?')[0];
+            else 
+            address = node.src;
+            node.src = address+"?time="+new Date().getTime();
+
+            setTimeout(startRefresh,times);
+        })();
+
+        }
+
+    window.onload = function()
+    {
+        var node = document.getElementById('img');
+        refresh(node);
+        // you can refresh as many images you want just repeat above steps
+    }
+    </script>
+    <title>A Smart way to HTML and CSS</title>
+    <p>Learn. Paragraph</p>
+    <img id="img" src="http://dreamatico.com/data_images/people/people-1.jpg">
+</head>
+<body>
+
+</body>
+</html>

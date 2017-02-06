@@ -22,14 +22,30 @@ public class discover_server implements Runnable{
 	discover_server(PaniacIPC ipc,String name){
 		this.ipc=ipc;
 		this.myname=name;
-		updateStatus();
+		heartbeat();
 	}
 	
 	private void updateStatus(){
 		status.put("NAME", myname);
-		status.put("TYPE", this.getClass().toString());
+		status.put("CLASS", this.getClass().toString());
+		status.put("TYPE", "");
 		status.put("TIMESTAMP", String.valueOf(System.currentTimeMillis()));
 		status.put("REQUEST_COUNT", String.valueOf(request_count));
+		status.put("LASTREQUEST_TIMESTAMP", String.valueOf(0));
+		status.put("LASTREQUEST_NAME", "");
+	}
+	
+	private void heartbeat(){
+		updateStatus();
+		status.put("TYPE", "HEARTBEAT");
+		ipc.push(status);
+	}
+	
+	private void newRequest(String name){
+		updateStatus();
+		status.put("TYPE", "NEWEVENT");
+		status.put("LASTREQUEST_TIMESTAMP", String.valueOf(System.currentTimeMillis()));
+		status.put("LASTREQUEST_NAME", name);
 		ipc.push(status);
 	}
 	
@@ -39,7 +55,6 @@ public class discover_server implements Runnable{
 	
 	@Override
 	  public void run() {
-		System.out.println("DEBUGGING");
 	    try {
 	      //Keep a socket open to listen to all the UDP trafic that is destined for this port
 	      socket = new DatagramSocket(8888, InetAddress.getByName("0.0.0.0"));
@@ -47,7 +62,7 @@ public class discover_server implements Runnable{
 	      socket.setSoTimeout(500);
 
 	      while (running_flag && !Thread.currentThread().interrupted()) {
-	    	updateStatus();
+	    	heartbeat();
 	        System.out.println(getClass().getName() + ">>>Ready to receive broadcast packets!");
 	        
 	        //Receive a packet
@@ -67,6 +82,7 @@ public class discover_server implements Runnable{
 	        String message = new String(packet.getData()).trim();
 	        if (message.equals("DISCOVER_FUIFSERVER_REQUEST")) {
 	        	request_count++;
+	        	newRequest(packet.getAddress().getHostAddress());
 	          byte[] sendData = "DISCOVER_FUIFSERVER_RESPONSE".getBytes();
 
 	          //Send a response
