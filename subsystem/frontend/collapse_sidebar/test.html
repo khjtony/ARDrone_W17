@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="./favicon.ico">
+
+    <title>EFL:Electrical Lab Daily</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="./assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="./assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript" src="./script.js"></script>
+
+
+  </head> 
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"></button>
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">EFL:Electrical Lab Daily</a>
+        </div>
+
+        <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Training session</a></li>
+        <li><a href="#">Lab instruction</a></li>
+        <li><a href="#">Contact</a></li>
+        </ul>
+
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="mainbanner jumbotron">
+      <div class="container">
+        <img src='images/index_background.png'>
+          <h1>Welcome to EFL!</h1>
+          <p>This is website for Electrical Lab in the EFL at University of California, Davis. You will be getting updates for the opening hours, available equipments and ongoing training sessions. 
+          If you have any of questions or suggestions, please email to me: <a href="mailto:khjtony@gmail.com">khjtony@gmail.com</a></p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <h2>Always wear safety equipments:</h2>
+        <div class="col-md-4">
+          <figure>
+            <img class="shadow-box img-responsive" max-width=90% alt="Wearing goggles!" src="images/goggle.jpg" border="2">
+          <center>Wearing safety goggles!</center>
+          </figure>
+        </div>
+          
+        <div class="col-md-4">
+          <figure>
+            <img class="shadow-box img-responsive" max-width=90% alt="Wearing goggles!" src="images/boots.jpg" border="2">
+          <center>Wearing boots that covers your foot!</center>
+          </figure>
+        </div>
+
+        <div class="col-md-4">
+          <figure>
+            <img class="shadow-box img-responsive" max-width=90% alt="Wearing goggles!" src="https://fullsourcemedia.s3.amazonaws.com/images/items/a/raw/BLAK-160013709499-A1.jpg" border="2">
+          <center>Wearing long pants! No Shorts!</center>
+          </figure>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="row">
+      <h2> EFL:Electrical Lab Calendar</h2>
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&amp;wkst=2&amp;bgcolor=%23FFFFFF&amp;src=ik7fjcj12bd0fcf27m1tfl09s4%40group.calendar.google.com&amp;color=%23333333&amp;ctz=America%2FLos_Angeles" style="border-width:0" width=100% height="400" frameborder="0" scrolling="no"></iframe>
+      </div>
+
+
+      <hr>
+
+      <div class="row">
+      <h2> Reserve your seat</h2>
+        <div class="well well-sm">
+          <form class="form-horizontal" action="" method="post">
+          <fieldset>
+    
+            <!-- Name input-->
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="name">Name</label>
+              <div class="col-md-10">
+                <input id="name" name="name" type="text" placeholder="Your name" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Email input-->
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="email">Your E-mail</label>
+              <div class="col-md-10">
+                <input id="email" name="email" type="text" placeholder="Your email" class="form-control">
+              </div>
+            </div>
+    
+            <!-- Message body -->
+            <div class="form-group">
+              <label class="col-md-2 control-label" for="message">Your plan</label>
+              <div class="col-md-10">
+                <textarea class="form-control" id="message" name="message" placeholder="Please enter what you need in the EFL" rows="5"></textarea>
+              </div>
+            </div>
+    
+            <!-- Form actions -->
+            <div class="form-group">
+              <div class="col-md-12 text-right">
+                <button type="submit" onClick="submitReserve()" class="btn btn-primary btn-lg">Submit</button>
+              </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+       </div>
+        <div class="col-md-4">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+        </div>
+      </div>
+
+      <hr>
+
+      <footer>
+        <p>Hengjiu Kang, Lab Manager at EFL, University of California, Davis</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="./assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="./dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,33 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.mainbanner{
+    position: relative;
+    overflow: hidden;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.mainbanner h1,p{
+    position: relative;
+    z-index: 2;
+    color: black;
+}
+
+.mainbanner img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width:100%;
+    height: auto;
+    opacity: 0.4;
+}
+
+
+.verticalLine {
+  border-left: thick solid #ff0000;
+}
+

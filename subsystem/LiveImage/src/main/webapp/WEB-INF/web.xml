@@ -1,0 +1,27 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <servlet>
+  	<servlet-name>Hello</servlet-name>
+  	<display-name>Hello</display-name>
+  	<description></description>
+  	<servlet-class>com.pan-iac.ardrone.Hello</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>GetRecentPost</servlet-name>
+  	<display-name>GetRecentPost</display-name>
+  	<description></description>
+  	<servlet-class>ardrone.GetRecentPost</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>Hello</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>GetRecentPost</servlet-name>
+  	<url-pattern>/GetRecentPost</url-pattern>
+  </servlet-mapping>
+</web-app>

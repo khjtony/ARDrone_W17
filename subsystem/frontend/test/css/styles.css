@@ -1,0 +1,22 @@
+p{
+    font-family: serif, Georgia, "Times New Toman",serif;
+    font-size: 2em;
+    text-indent: 1em;
+    margin: 2em;
+    /*padding: 2em;*/
+}
+
+h1{
+    font-size:2em;
+    font-weight: 900;
+}
+
+a:hover{
+    font-weight: bold;
+}
+
+ul{
+    margin: 1em;
+    list-style-type: disc;
+}
+
