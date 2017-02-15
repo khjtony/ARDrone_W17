@@ -8,6 +8,6 @@ import javax.xml.transform.stream.*;
 
 @WebServiceProvider
 @ServiceMode(value = Service.Mode.PAYLOAD)
-public class web_server extends HttpServlet{
+public class web_server {
 	
 }

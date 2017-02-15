@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="ccf15e72-434e-4106-a77c-e1860e77786f" name="ardrone" url="http://54.197.25.47">
+        <fileTransfer host="54.197.25.47" port="22" privateKey="$USER_HOME$/.ssh/aws_web.pem" rootFolder="/home/ubuntu" accessType="SFTP" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

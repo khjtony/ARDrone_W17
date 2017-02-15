@@ -3,6 +3,12 @@
 
 
 <head>
+<link rel="stylesheet" type="text/css" href="css/styles.css">
+    <script>
+        function hello(){
+            alert("HAHAH");
+        }
+    </script>
     <script>
     function refresh(node)
     {
@@ -30,10 +36,51 @@
     }
     </script>
     <title>A Smart way to HTML and CSS</title>
-    <p>Learn. Paragraph</p>
-    <img id="img" src="http://dreamatico.com/data_images/people/people-1.jpg">
+    <!-- <img id="img" src="http://dreamatico.com/data_images/people/people-1.jpg"> -->
 </head>
 <body>
+    <h1> Hello, this is title</h1>
+    <p> Hello, this is paragraph</p>
+    <p>Hey, I am just evaluating sublime text beta. I was wondering if there was anyway to get the vsplit functionality of vim. As in, split the screen into two parts, where I can either <span>view the</span> same file or another file.
+
+    <strong>I tried googling, but I didn't find anything, or maybe I didn't look hard enough.</strong></p>
+
+    <p ID="lookup">Look up <a href="https://wikipedia.org" target="_blank"> wiki</a>
+
+    <ul>
+        <li>asdfadsf</li>
+        <li>asdfssss</li>
+    </ul>
+
+    <button id="hello" onclick="hello()">Hello</button>
+    <script>
+    var name=prompt("Your name?","Tester");
+    </script>
+
+    <input type =" text" size =" 30" onFocus =" this.style.backgroundColor = 'yellow';" onBlur =" this.style.backgroundColor = 'white';">
+
+    <h2> Place holding words</h2>
+    <p> 
+I would advise registering the IConnection as a singleton.
+
+To register the IConnection as a singleton in Unity you would use a ContainerControlledLifetimeManager, e.g.
+
+var connectionFactory = new ConnectionFactory
+{
+    // Configure the connection factory
+};
+unityContainer.RegisterInstance(connectionFactory);
+
+unityContainer.RegisterType<IConnection, AutorecoveringConnection>(new ContainerControlledLifetimeManager(),
+    new InjectionMethod("init"));
+The AutorecoveringConnection instance, once resolved for the first time will stay alive until the owning UnityContainer is disposed.
+
+Because we have registered the ConnectionFactory with Unity, this will automatically be injected into the constructor of AutorecoveringConnection. The InjectionMethod ensures that the first time the AutorecoveringConnection is resolved, the init method is invoked.
+
+As for your question about whether you should abstract away RabbitMQ from your services, my answer would be yes, however I would not simply create an IMessageQueue abstraction. Think about what purpose you are using your message queue for, is it to push statuses? If so, have an IStatusNotifier interface with a concrete implementation for RabbitMQ. If it's to fetch updates, have an IUpdateSource interface with a concrete implementation for RabbitMQ. You can see where I am going with this.
+
+If you create an abstraction for a Message Queue, you are limiting yourself to features only available across all Message Queue implementations. By having a different implementation of IStatusNotifier for different Message Queue implementations, you are able to take advantage of features which are unique to different technologies while also remaining flexible in case completely different technologies are employed in <a href="#hello">future</a> (e.g. Writing to a SQL database or outputting to a console).</p>
+
 
 </body>
 </html>
