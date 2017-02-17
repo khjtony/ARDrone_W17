@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b45de04f-03f3-4260-b35e-c05911404445" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/blogs/2017-02-16-Blog-Fresh-Feature.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/blogs/2017-02-16-GPS-With-Arduino.md" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/fresh_blog.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/middleware.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/index.js" afterPath="$PROJECT_DIR$/routes/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/profile.js" afterPath="$PROJECT_DIR$/routes/profile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/users.js" afterPath="$PROJECT_DIR$/routes/users.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/contact.hbs" afterPath="$PROJECT_DIR$/views/contact.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.hbs" afterPath="$PROJECT_DIR$/views/index.hbs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/layout.hbs" afterPath="$PROJECT_DIR$/views/layout.hbs" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -151,6 +139,7 @@
   <component name="Git.Settings">
     <option name="PREVIOUS_COMMIT_AUTHORS">
       <list>
+        <option value="Hengjiu Kang &lt;khjtony@gmail.com&gt;" />
         <option value="khjtony &lt;khjtony@gmail.com&gt;" />
       </list>
     </option>
@@ -344,7 +333,7 @@
       <option name="presentableId" value="Default" />
       <updated>1487108949754</updated>
       <workItem from="1487108954213" duration="4379000" />
-      <workItem from="1487132960979" duration="21387000" />
+      <workItem from="1487132960979" duration="21425000" />
     </task>
     <task id="LOCAL-00001" summary="Created new site. Updated some contents.">
       <created>1487185762389</created>
@@ -353,11 +342,18 @@
       <option name="project" value="LOCAL" />
       <updated>1487185762389</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added blog auto update feature">
+      <created>1487315809472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1487315809472</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25766000" />
+    <option name="totallyTimeSpent" value="25804000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="42" y="23" width="1238" height="777" extended-state="0" />
@@ -393,7 +389,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created new site. Updated some contents." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created new site. Updated some contents." />
+    <MESSAGE value="added blog auto update feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="added blog auto update feature" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
