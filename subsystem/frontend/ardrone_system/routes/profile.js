@@ -2,9 +2,12 @@
  * Created by khjtony on 2/14/17.
  */
 var express = require('express');
+var appRoot = require('app-root-path');
 var path = require('path');
 var router = express.Router();
 var marked = require('marked');
+var app=express();
+app.use(express.static(path.join(__dirname, 'public')));
 marked.setOptions({
     renderer: new marked.Renderer(),
     gfm: true,
@@ -16,7 +19,7 @@ marked.setOptions({
     smartypants: false
 });
 var fs = require('fs');
-var filepath = path.join(__dirname+'/test.md');
+var filepath = path.join(appRoot.toString()+'/public/blogs/2017-02-14-New-blog.md');
 
 
 /* GET profile page. */

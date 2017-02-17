@@ -22,6 +22,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var contact = require('./routes/contact');
 var profile = require('./routes/profile');
+var fresh_blog = require('./routes/fresh_blog');
 //end setup router
 
 var app = express();
@@ -29,6 +30,8 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+//register help method
+
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -42,6 +45,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/contact',contact);
 app.use('/profile',profile);
+app.use('/fresh_blog',fresh_blog);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
