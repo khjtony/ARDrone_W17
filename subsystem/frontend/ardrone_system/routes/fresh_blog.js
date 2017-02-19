@@ -14,10 +14,11 @@ function _fresh_blog(res){
     fs.readdir(blog_path, function (err, items) {
         console.log(items);
         for (var i = 0; i < (items.length>5?5:items.length); i++) {
-            newline += "<li>" + items[i].split('.')[0].split('-').slice(3).join(' ') + "</li>";
+            // newline += "<li>" + items[i].split('.')[0].split('-').slice(3).join(' ') + "</li>";
+            newline += items[i].split('.')[0];
+            newline += "\n";
         }
-        newline += "\n";
-        newline += "<li><a href='#' style='color:deepskyblue;'>More...</a></li>";
+        // newline += "<li><a href='#' style='color:deepskyblue;'>More...</a></li>";
         res.json({blog:newline});
     });
 }

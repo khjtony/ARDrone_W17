@@ -77,19 +77,19 @@
 </body>
 
 <!-- Bootstrap Core CSS -->
-<link href="stylesheets/bootstrap.css" rel="stylesheet">
+<link href="/stylesheets/bootstrap.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="stylesheets/stylesheet.css" rel="stylesheet">
+<link href="/stylesheets/stylesheet.css" rel="stylesheet">
 
 <!-- fontawesome -->
-<link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
 
 <!-- jQuery -->
-<script src="javascripts/jquery.js"></script>
+<script src="/javascripts/jquery.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="javascripts/bootstrap.min.js"></script>
+<script src="/javascripts/bootstrap.min.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -103,7 +103,16 @@
 <script>
 $(document).ready(function(){
     $.getJSON("/fresh_blog", function (data){
-        $("#fresh_blog").html(data.blog);
+        var lines = data.blog.split('\n');
+        var content="";
+        for(var i=0;i<lines.length-1;i++){
+            // <li><a href=''>line</a></li>
+            console.log("Now read: "+lines[i]);
+            content += "<li><a href='/blog/"+lines[i]+"'>" + lines[i].split('-').slice(3).join(' ') + "</a></li>";
+        }
+        content += "<li><a href='#' style='color:deepskyblue;'>More...</a></li>";
+        console.log(content);
+        $("#fresh_blog").html(content);
     });
 });
 </script>
