@@ -1,4 +1,4 @@
-package com.paniac.ecs193_aux.DummyGPS;
+package com.paniac.ecs193_aux.GimbalControl;
 
 import com.google.gson.Gson;
 import com.rabbitmq.client.Channel;
@@ -10,13 +10,13 @@ import java.util.Date;
 import java.util.Scanner;
 
 /**
- * Created by khjtony on 3/10/17.
+ * Created by khjtony on 3/11/17.
  */
 
-class GPSMSG{
+class GIMBALMSG{
     private String name;
-    private String LAT;
-    private String LON;
+    private String X;
+    private String Y;
     private String TEMP;
     private String TimeStamp;
 
@@ -24,23 +24,23 @@ class GPSMSG{
         this.TimeStamp = String.valueOf(System.currentTimeMillis() / 1000L);
     }
 
-    private void _updateGPS(){
-        this.LAT = String.valueOf(30 + 20 * Math.cos(Double.valueOf(new SimpleDateFormat("ss").format(new Date())))/60.0*Math.PI);
-        this.LON = String.valueOf(120 + 20 * Math.sin(Double.valueOf(new SimpleDateFormat("ss").format(new Date())))/60.0*Math.PI);
+    private void _updateGimbal(){
+        this.X = new SimpleDateFormat("ss").format(new Date());
+        this.Y = String.valueOf(60 - Integer.valueOf(new SimpleDateFormat("ss").format(new Date())));
     }
 
     private  void _updateTemp(){
         this.TEMP = new SimpleDateFormat("ss").format(new Date());
     }
 
-    GPSMSG(String name){
+    GIMBALMSG(String name){
         this.name = name;
         this.TimeStamp = String.valueOf(System.currentTimeMillis() / 1000L);
     }
 
     String toGson(){
         this._updateTimeStamp();
-        this._updateGPS();
+        this._updateGimbal();
         this._updateTemp();
         Gson gson = new Gson();
         return gson.toJson(this);
@@ -49,8 +49,9 @@ class GPSMSG{
 }
 
 
-public class DummyGPSPublisher {
-    private static final String EXCHANGE_NAME = "DummyGPS";
+public class DummyGimbal {
+
+    private static final String EXCHANGE_NAME = "DummyGimbal";
 
     public static void main(String[] args){
         String hostname = "localhost";
@@ -86,13 +87,13 @@ public class DummyGPSPublisher {
 
             channel.exchangeDeclare(EXCHANGE_NAME, "fanout");
 
-            GPSMSG _msg = new GPSMSG("DummyGPS");
+            com.paniac.ecs193_aux.GimbalControl.GIMBALMSG _msg = new com.paniac.ecs193_aux.GimbalControl.GIMBALMSG("DummyGimbal");
 
             while(counter > 0){
                 channel.basicPublish(EXCHANGE_NAME, "", null, _msg.toGson().getBytes());
                 System.out.println(_msg.toGson());
                 counter --;
-                Thread.sleep(500);
+                Thread.sleep(50);
             }
 
             channel.close();
