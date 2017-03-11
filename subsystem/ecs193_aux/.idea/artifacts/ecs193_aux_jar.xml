@@ -2,6 +2,9 @@
   <artifact type="jar" name="ecs193_aux:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/ecs193_aux_jar</output-path>
     <root id="archive" name="ecs193_aux.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="ecs193_aux" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-log4j12/1.7.24/slf4j-log4j12-1.7.24.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/rabbitmq/amqp-client/4.1.0/amqp-client-4.1.0.jar" path-in-jar="/" />
