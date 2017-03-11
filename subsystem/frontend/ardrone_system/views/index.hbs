@@ -1,15 +1,76 @@
 
-<style>
-    #banner{
-        background-image: url("/images/coding_girl.jpg");
-        background-position: top center;
-        height: 400px;
-        -webkit-background-size:100%;
-        background-size:70%
+<style media="screen" type="text/css">
+    .carousel_image{
+        height: 200px;
     }
 </style>
+
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 <hr>
-<div class="col-lg-12 col-md12 col-sm-12 col-xs-12" id="banner">
+
+
+<div id="carousel" class="carousel slide" data-ride="carousel">
+    <!-- Menu -->
+    <ol class="carousel-indicators">
+        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel" data-slide-to="1"></li>
+        <li data-target="#carousel" data-slide-to="2"></li>
+        <li data-target="#carousel" data-slide-to="3"></li>
+        <li data-target="#carousel" data-slide-to="4"></li>
+        <li data-target="#carousel" data-slide-to="5"></li>
+    </ol>
+
+    <!-- Items -->
+    <div class="carousel-inner" id="fresh_banner">
+
+        <!--<div class="item active">-->
+            <!--<img class="carousel_image img-responsive" src="/images/banner.jpg" alt="Slide 1" />-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<img class="carousel_image img-responsive" src="/images/banner_1.png" alt="Slide 2" />-->
+        <!--</div>-->
+        <!--<div class="item">-->
+            <!--<img class="carousel_image img-responsive" src="/images/banner_2.png" alt="Slide 3" />-->
+        <!--</div>-->
+    </div>
+    <a href="#carousel" class="left carousel-control" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a href="#carousel" class="right carousel-control" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
 </div>
+
+
+<!-- jQuery -->
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+
+
+<!--update banner-->
+<script>
+    $(document).ready(function(){
+        $.getJSON("/fresh_banner", function (data){
+            var lines = data.banner.split('\n');
+            var content="";
+            content += "<div class='item active'> \
+                        <img class='carousel_image img-responsive' src='/images/banner/"+lines[0]+"' alt='Slide "+1+"' /> \
+                        </div>"
+            for(var i=1;i<lines.length-1;i++){
+                // <li><a href=''>line</a></li>
+                console.log("Now read: "+lines[i]);
+                content += "<div class='item'> \
+                        <img class='carousel_image img-responsive' src='/images/banner/"+lines[i]+"' alt='Slide "+i+"' /> \
+                        </div>"
+            }
+            console.log('This is content of new banner elements: '+content);
+            $("#fresh_banner").html(content);
+        });
+    });
+</script>
+
+

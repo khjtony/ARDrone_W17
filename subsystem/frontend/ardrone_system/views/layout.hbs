@@ -76,8 +76,22 @@
 
 </body>
 
-<!-- Bootstrap Core CSS -->
-<link href="/stylesheets/bootstrap.css" rel="stylesheet">
+<!-- jQuery -->
+<script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 
 <!-- Custom CSS -->
 <link href="/stylesheets/stylesheet.css" rel="stylesheet">
@@ -85,11 +99,7 @@
 <!-- fontawesome -->
 <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
 
-<!-- jQuery -->
-<script src="/javascripts/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="/javascripts/bootstrap.min.js"></script>
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,10 +121,12 @@ $(document).ready(function(){
             content += "<li><a href='/blog/"+lines[i]+"'>" + lines[i].split('-').slice(3).join(' ') + "</a></li>";
         }
         content += "<li><a href='#' style='color:deepskyblue;'>More...</a></li>";
-        console.log(content);
+        //console.log(content);
         $("#fresh_blog").html(content);
     });
 });
 </script>
+
+
 
 </html>

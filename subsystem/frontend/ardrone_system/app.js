@@ -24,6 +24,7 @@ var contact = require('./routes/contact');
 var profile = require('./routes/profile');
 var blog = require('./routes/blog');
 var fresh_blog = require('./routes/fresh_blog');
+var fresh_banner = require('./routes/fresh_banner');
 //end setup router
 
 var app = express();
@@ -48,6 +49,7 @@ app.use('/contact',contact);
 app.use('/profile',profile);
 app.use('/blog', blog);
 app.use('/fresh_blog',fresh_blog);
+app.use('/fresh_banner',fresh_banner);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -69,5 +71,5 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
-app.listen(8080,'0.0.0.0');
+app.listen(3000,'0.0.0.0');
 
