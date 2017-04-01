@@ -14,7 +14,7 @@ router.post('/login', passport.authenticate('local', { failureRedirect: '/login'
             return next(err);
         }
 
-        res.redirect('/');
+        res.redirect('/dashboard');
     });
 });
 

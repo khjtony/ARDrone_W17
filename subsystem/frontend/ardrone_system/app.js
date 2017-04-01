@@ -34,6 +34,7 @@ var fresh_blog = require('./routes/fresh_blog');        // poll fresh blogs
 var fresh_banner = require('./routes/fresh_banner');        // poll fresh banners
 var comment = require('./routes/comment');
 var register = require('./routes/register');
+var dashboard = require('./routes/dashboard');
 //end setup router
 
 // setup parser and passport
@@ -50,6 +51,16 @@ app.use(passport.initialize());
 app.use(flash());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+// passport config-
+var Account = require('./models/account');
+passport.use(new LocalStrategy(Account.authenticate()));
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+// mongoose
+mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+
+
 
 
 // view engine setup
@@ -64,6 +75,7 @@ app.get('/flash', function(req, res){
     res.redirect('/');
 });
 app.use('/', index);
+app.use('/', dashboard);
 app.use('/',login);
 app.use('/', register);
 app.use('/', users);
@@ -73,15 +85,6 @@ app.use('/blog', blog);
 app.use('/fresh_blog',fresh_blog);
 app.use('/fresh_banner',fresh_banner);
 
-
-// passport config-
-var Account = require('./models/account');
-passport.use(Account.createStrategy());
-passport.serializeUser(Account.serializeUser());
-passport.deserializeUser(Account.deserializeUser());
-
-// mongoose
-mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
 
 
 

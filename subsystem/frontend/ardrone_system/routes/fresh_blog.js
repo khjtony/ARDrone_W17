@@ -12,7 +12,7 @@ var blog_path = path.join(appRoot.toString(), "/public/blogs/");
 function _fresh_blog(res){
     var newline="";
     fs.readdir(blog_path, function (err, items) {
-        console.log(items);
+        //console.log(items);
         for (var i = 0; i < (items.length>5?5:items.length); i++) {
             // newline += "<li>" + items[i].split('.')[0].split('-').slice(3).join(' ') + "</li>";
             newline += items[i].split('.')[0];

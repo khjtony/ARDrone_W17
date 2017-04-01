@@ -1,7 +1,7 @@
 
 <style media="screen" type="text/css">
     .carousel_image{
-        height: 200px;
+        height: 100%; !important;
     }
 </style>
 
@@ -22,7 +22,7 @@
     </ol>
 
     <!-- Items -->
-    <div class="carousel-inner" id="fresh_banner">
+    <div class="carousel-inner" id="fresh_banner" style="height: 400px !important;">
 
         <!--<div class="item active">-->
             <!--<img class="carousel_image img-responsive" src="/images/banner.jpg" alt="Slide 1" />-->
@@ -58,8 +58,10 @@
             var lines = data.banner.split('\n');
             var content="";
             content += "<div class='item active'> \
-                        <img class='carousel_image img-responsive' src='/images/banner/"+lines[0]+"' alt='Slide "+1+"' /> \
-                        </div>"
+                        <img class='carousel_image img-responsive' \
+                            src='/images/banner/"+lines[0]+"' " +
+                            "alt='Slide "+1+"' /> \
+                        </div>";
             for(var i=1;i<lines.length-1;i++){
                 // <li><a href=''>line</a></li>
                 console.log("Now read: "+lines[i]);
