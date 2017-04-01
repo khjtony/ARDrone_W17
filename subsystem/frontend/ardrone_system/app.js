@@ -1,9 +1,13 @@
 var express = require('express');
 var path = require('path');
+var passport = require('passport');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var LocalStrategy = require('passport-local').Strategy;
+var flash = require('connect-flash');
 var marked = require('marked');
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -16,40 +20,72 @@ marked.setOptions({
     smartypants: false
 });
 
+var app = express();
+
 
 //setup router
+var login = require('./routes/login');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var contact = require('./routes/contact');
 var profile = require('./routes/profile');
 var blog = require('./routes/blog');
-var fresh_blog = require('./routes/fresh_blog');
-var fresh_banner = require('./routes/fresh_banner');
+var fresh_blog = require('./routes/fresh_blog');        // poll fresh blogs
+var fresh_banner = require('./routes/fresh_banner');        // poll fresh banners
+var comment = require('./routes/comment');
+var register = require('./routes/register');
 //end setup router
 
-var app = express();
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-//register help method
-
-
-// uncomment after placing your favicon in /public
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// setup parser and passport
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(require('express-session')({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+}));
+app.use(passport.initialize());
+app.use(flash());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'hbs');
+
+
+// setup routers
+app.get('/flash', function(req, res){
+    // Set a flash message by passing the key, followed by the value, to req.flash().
+    req.flash('info', 'Flash is back!')
+    res.redirect('/');
+});
 app.use('/', index);
-app.use('/users', users);
+app.use('/',login);
+app.use('/', register);
+app.use('/', users);
 app.use('/contact',contact);
 app.use('/profile',profile);
 app.use('/blog', blog);
 app.use('/fresh_blog',fresh_blog);
 app.use('/fresh_banner',fresh_banner);
+
+
+// passport config-
+var Account = require('./models/account');
+passport.use(Account.createStrategy());
+passport.serializeUser(Account.serializeUser());
+passport.deserializeUser(Account.deserializeUser());
+
+// mongoose
+mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
+
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -82,6 +82,8 @@ public class DummyGimbal {
             int counter  = 300;
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(hostname);
+            factory.setUsername(username);
+            factory.setPassword(password);
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
 

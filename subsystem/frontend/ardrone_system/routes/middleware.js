@@ -3,7 +3,7 @@
  */
 var express = require('express');
 
-var middleware = function(){};
+var middleware = {};
 
 middleware.blog_fresh = function () {
     return "hahaha";

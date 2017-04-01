@@ -38,7 +38,7 @@ class GPSMSG{
         this.TimeStamp = String.valueOf(System.currentTimeMillis() / 1000L);
     }
 
-    String toGson(){
+    String toJson(){
         this._updateTimeStamp();
         this._updateGPS();
         this._updateTemp();
@@ -81,6 +81,8 @@ public class DummyGPSPublisher {
             int counter  = 300;
             ConnectionFactory factory = new ConnectionFactory();
             factory.setHost(hostname);
+            factory.setUsername(username);
+            factory.setPassword(password);
             Connection connection = factory.newConnection();
             Channel channel = connection.createChannel();
 
@@ -89,8 +91,8 @@ public class DummyGPSPublisher {
             GPSMSG _msg = new GPSMSG("DummyGPS");
 
             while(counter > 0){
-                channel.basicPublish(EXCHANGE_NAME, "", null, _msg.toGson().getBytes());
-                System.out.println(_msg.toGson());
+                channel.basicPublish(EXCHANGE_NAME, "", null, _msg.toJson().getBytes());
+                System.out.println(_msg.toJson());
                 counter --;
                 Thread.sleep(500);
             }
