@@ -60,6 +60,13 @@
                     <i class="fa fa-envelope-o fa-lg"></i> Contact us
                 </a>
             </li>
+            {{#if user}}
+                <li>
+                    <a href="/logout" id="menu-logout">
+                        <i class="fa fa-sign-out fa-lg"></i> Logout: {{user}}
+                    </a>
+                </li>
+            {{/if}}
         </ul>
     </div>
 </div>

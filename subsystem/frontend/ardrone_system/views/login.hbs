@@ -1,10 +1,10 @@
 <!-- views/signin.handlebars -->
 <div class="jumbotron">
     <h1>Sign in</h1>
-    <p>We're using passport.js to demonstrate user authentication. Please sign-in with your Local, Twitter, Google, or Facebook account to view your profile.</p>
+    <p>Dashboard is for internal use. Please log in.</p>
 
 
-    <form id="local-sign-in" action="/login" method="post">
+    <form id="local-sign-in"  action="/login" method="post">
         <div>
             <p></p>
             <label>Username:</label>
@@ -16,6 +16,21 @@
         </div>
         <div>
             <input type="submit" class="btn btn-primary btn-sm" value="Log In"/>
+        </div>
+    </form>
+
+    <form id="local-reg"  action="/register" method="post">
+        <div>
+            <p></p>
+            <label>New Username:</label>
+            <input type="text" name="username"/>
+        </div>
+        <div>
+            <label>New Password:</label>
+            <input type="password" name="password"/>
+        </div>
+        <div>
+            <input type="submit" class="btn btn-primary btn-sm" value="Register"/>
         </div>
     </form>
 </div>

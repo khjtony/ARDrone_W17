@@ -8,6 +8,18 @@ var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var app = express();
+var exphbs  = require('express-handlebars');
+var hbs = exphbs.create({
+    defaultLayout: 'layout',
+    extname: '.hbs',
+    // Uses multiple partials dirs, templates in "shared/templates/" are shared
+    // with the client-side of the app (see below).
+    partialsDir: [
+        'views/partials/'
+    ]
+});
+var server = require('http').createServer(app);
 var marked = require('marked');
 marked.setOptions({
     renderer: new marked.Renderer(),
@@ -20,7 +32,7 @@ marked.setOptions({
     smartypants: false
 });
 
-var app = express();
+
 
 
 //setup router
@@ -64,14 +76,15 @@ mongoose.connect('mongodb://localhost/passport_local_mongoose_express4');
 
 
 // view engine setup
+app.engine('.hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', '.hbs');
 
 
 // setup routers
 app.get('/flash', function(req, res){
     // Set a flash message by passing the key, followed by the value, to req.flash().
-    req.flash('info', 'Flash is back!')
+    req.flash('info', 'Flash is back!');
     res.redirect('/');
 });
 app.use('/', index);
@@ -85,7 +98,7 @@ app.use('/blog', blog);
 app.use('/fresh_blog',fresh_blog);
 app.use('/fresh_banner',fresh_banner);
 
-
+require('./routes/chatroom')(server);
 
 
 
@@ -108,7 +121,10 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+
+var port = process.env.PORT || 3000;
+server.listen(port, '0.0.0.0', function () {
+    console.log('Server listening at port %d', port);
+});
+
 module.exports = app;
-
-app.listen(3000,'0.0.0.0');
-

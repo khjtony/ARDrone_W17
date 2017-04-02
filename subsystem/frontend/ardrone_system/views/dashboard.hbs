@@ -4,3 +4,29 @@
     Sorry Please login!
 {{/if}}
 </h1>
+
+{{#if user}}
+    <div class="jumbotron">
+        <h3>Add new account: </h3>
+        <hr>
+        <form id="local-reg" action="/register" method="post">
+            <div>
+                <label>New Username:</label>
+                <input type="text" name="username"/>
+            </div>
+            <div>
+                <label>New Password:</label>
+                <input type="password" name="password"/>
+            </div>
+            <div>
+                <input type="submit" class="btn btn-primary btn-sm" value="Register"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="jumbotron" style="min-height: 750px">
+        <h3>Chat Room: </h3>
+        <hr>
+        {{> chatroom}}
+    </div>
+{{/if}}
